@@ -1,0 +1,330 @@
+:root {
+    /* Colors from logo */
+    --primary-green: #2a7a5f;
+    --primary-teal: #1d4b5b;
+    --secondary-green: #3c9e7a;
+    --light-green: #e7f5ef;
+    --dark-teal: #143641;
+    --light-teal: #e6f0f3;
+}
+
+body {
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fafafa;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Navbar styling */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(to right, var(--primary-green), var(--primary-teal));
+}
+
+.navbar-brand img {
+    transition: transform 0.3s;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar .nav-link.active {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Header styling */
+.page-header {
+    background: linear-gradient(135deg, var(--light-green), var(--light-teal));
+    padding: 40px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    color: var(--primary-teal);
+    font-weight: 600;
+}
+
+.page-header .lead {
+    color: var(--primary-green);
+    font-weight: 400;
+}
+
+/* Form styling */
+.form-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
+
+.section-title {
+    color: var(--primary-teal);
+    font-weight: 600;
+    border-bottom: 2px solid var(--light-green);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: var(--primary-teal);
+    font-weight: 500;
+}
+
+.form-control, .form-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s;
+    padding: 0.6rem 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--secondary-green);
+    box-shadow: 0 0 0 0.2rem rgba(42, 122, 95, 0.2);
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 10px rgba(42, 122, 95, 0.2);
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-green);
+    border-color: var(--secondary-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(42, 122, 95, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Results section */
+.result-container {
+    padding: 25px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+.alert-success {
+    background-color: var(--light-green);
+    border-color: var(--secondary-green);
+    color: var(--primary-green);
+}
+
+.alert-success h4 {
+    color: var(--primary-green);
+}
+
+.alert-danger {
+    background-color: #ffefef;
+    border-color: #f5c6c6;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+    padding: 40px 0 20px;
+    background: linear-gradient(to right, var(--primary-teal), var(--primary-green));
+    color: white;
+}
+
+footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+footer .text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Animation for results */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Card Styling */
+.info-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.info-card .card-body {
+    padding: 25px;
+}
+
+.info-card .card-title {
+    color: var(--primary-teal);
+    font-weight: 600;
+}
+
+.info-card-icon {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Additional styles for the meal planner page */
+
+/* Meal containers */
+.meal-container {
+    border-left: 4px solid var(--primary-green);
+    padding-left: 15px;
+    position: relative;
+}
+
+.meal-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 4px;
+    height: 30px;
+    background-color: var(--primary-green);
+}
+
+/* Food suggestion tables */
+.food-suggestions {
+    background-color: #f9f9f9;
+    border-color: #e9e9e9 !important;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.food-suggestions table {
+    font-size: 0.9rem;
+}
+
+.food-suggestions table thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 1;
+}
+
+/* Selected foods */
+.selected-foods {
+    background-color: var(--light-green);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.selected-foods table {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Meal totals */
+.meal-totals {
+    font-weight: 500;
+}
+
+/* Buttons */
+.add-food, .remove-food {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.7rem;
+}
+
+/* Nutrition summary cards */
+#nutritionSummary .card {
+    transition: transform 0.3s;
+}
+
+#nutritionSummary .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Progress bars */
+.progress {
+    overflow: visible;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 20px 0;
+    }
+    
+    .form-section {
+        padding: 15px;
+    }
+    
+    .meal-container {
+        margin-bottom: 30px;
+    }
+}

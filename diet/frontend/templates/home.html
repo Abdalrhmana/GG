@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriAI - Smart Nutrition & Health Platform</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-green), var(--light-teal));
+            padding: 7rem 0 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            border: none;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .cta-section {
+            background-color: var(--primary-green);
+            padding: 4rem 0;
+            color: white;
+            margin: 5rem 0 3rem;
+        }
+        
+        .testimonial-card {
+            border-radius: 12px;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+        
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--primary-green);
+            opacity: 0.3;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--primary-teal);
+            font-weight: 500;
+        }
+        
+        .how-it-works-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="../static/nutri-logo.png" alt="NutriAI Logo" height="50" class="d-inline-block align-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/obesity-prediction"><i class="fas fa-weight-scale me-1"></i>Obesity Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/meal-planner"><i class="fas fa-utensils me-1"></i>Meal Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="display-3 fw-bold mb-4">Your Personalized Health Journey Starts Here</h1>
+                    <p class="lead mb-4">NutriAI combines advanced AI algorithms with nutritional science to deliver personalized health recommendations and meal plans tailored to your unique needs.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="/obesity-prediction" class="btn btn-primary btn-lg">
+                            <i class="fas fa-weight-scale me-2"></i>Check Your Health
+                        </a>
+                        <a href="/meal-planner" class="btn btn-outline-dark btn-lg">
+                            <i class="fas fa-utensils me-2"></i>Plan Your Meals
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Healthy Food" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Our Platform Features</h2>
+            <p class="lead text-muted">Comprehensive tools to support your health and nutrition journey</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card feature-card shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         class="card-img-top feature-img" alt="Obesity Prediction">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold"><i class="fas fa-weight-scale text-primary me-2"></i>Obesity Prediction</h4>
+                        <p class="card-text">Our advanced AI model analyzes your lifestyle factors to predict potential obesity risks and provide personalized health recommendations.</p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Comprehensive health assessment</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Personalized risk analysis</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Actionable health recommendations</li>
+                        </ul>
+                        <a href="/obesity-prediction" class="btn btn-primary">Try Obesity Prediction</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card feature-card shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         class="card-img-top feature-img" alt="Meal Planner">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold"><i class="fas fa-utensils text-primary me-2"></i>Meal Planner</h4>
+                        <p class="card-text">Create customized meal plans based on your nutritional needs, dietary preferences, and health goals with access to over 1,000 food items.</p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Personalized nutrition calculations</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Diverse food recommendations</li>
+                            <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Daily meal plan creation</li>
+                        </ul>
+                        <a href="/meal-planner" class="btn btn-primary">Try Meal Planner</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="container my-5" id="about">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">How NutriAI Works</h2>
+            <p class="lead text-muted">A simple process for improving your health outcomes</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="how-it-works-step">
+                    <div class="step-number">1</div>
+                    <h4>Complete Your Health Assessment</h4>
+                    <p>Answer questions about your lifestyle, eating habits, physical activity, and other key health factors.</p>
+                </div>
+                
+                <div class="how-it-works-step">
+                    <div class="step-number">2</div>
+                    <h4>Receive Your Personalized Analysis</h4>
+                    <p>Our AI models analyze your inputs to predict obesity risk levels and identify key areas for improvement.</p>
+                </div>
+                
+                <div class="how-it-works-step">
+                    <div class="step-number">3</div>
+                    <h4>Create Your Custom Meal Plan</h4>
+                    <p>Based on your nutritional needs and health goals, create a personalized meal plan from our database of 1000+ food items.</p>
+                </div>
+                
+                <div class="how-it-works-step">
+                    <div class="step-number">4</div>
+                    <h4>Track Your Progress</h4>
+                    <p>Implement the recommendations, follow your meal plan, and track improvements in your health over time.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                     alt="How It Works" class="img-fluid rounded-3 shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Food Items</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number">87%</div>
+                    <div class="stat-label">Prediction Accuracy</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Health Factors Analyzed</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-4">Ready to Start Your Health Journey?</h2>
+            <p class="lead mb-4">Take the first step toward better health with our comprehensive tools.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="/obesity-prediction" class="btn btn-light btn-lg px-4">
+                    <i class="fas fa-weight-scale me-2"></i>Check Your Health
+                </a>
+                <a href="/meal-planner" class="btn btn-outline-light btn-lg px-4">
+                    <i class="fas fa-utensils me-2"></i>Plan Your Meals
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">What Our Users Say</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-quote">"</div>
+                    <p class="mb-4">The obesity prediction tool gave me insights I never considered before. It helped me make targeted lifestyle changes.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width:50px;height:50px;">JD</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">John D.</h5>
+                            <small class="text-muted">Lost 15kg in 6 months</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-quote">"</div>
+                    <p class="mb-4">The meal planner is amazing! It's so easy to create balanced meals that actually taste good and meet my nutritional needs.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width:50px;height:50px;">SM</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Sarah M.</h5>
+                            <small class="text-muted">Fitness enthusiast</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-quote">"</div>
+                    <p class="mb-4">As a nutritionist, I recommend NutriAI to my clients. The science-based approach and personalized recommendations are spot on.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-info text-white d-flex align-items-center justify-content-center" style="width:50px;height:50px;">DR</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Dr. Rachel K.</h5>
+                            <small class="text-muted">Registered Nutritionist</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>About NutriAI</h5>
+                    <p class="text-muted">NutriAI combines advanced machine learning with nutritional science to help you understand your health risks and create personalized meal plans for your specific goals.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/"><i class="fas fa-chevron-right me-2"></i>Home</a></li>
+                        <li><a href="/obesity-prediction"><i class="fas fa-chevron-right me-2"></i>Obesity Prediction</a></li>
+                        <li><a href="/meal-planner"><i class="fas fa-chevron-right me-2"></i>Meal Planner</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right me-2"></i>About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i>contact@nutriai.com</li>
+                        <li><i class="fas fa-phone me-2"></i>(123) 456-7890</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>123 Health St, Wellness City</li>
+                        <li class="mt-3">
+                            <a href="#" class="me-2"><i class="fab fa-facebook fa-lg"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter fa-lg"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 border-light opacity-25">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 NutriAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriAI - Meal Planner</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="../static/nutri-logo.png" alt="NutriAI Logo" height="50" class="d-inline-block align-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/obesity-prediction"><i class="fas fa-weight-scale me-1"></i>Obesity Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/meal-planner"><i class="fas fa-utensils me-1"></i>Meal Planner</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5 pt-5">
+        <div class="page-header text-center py-5 mb-5">
+            <h1 class="display-4 fw-bold">Meal Planner</h1>
+            <p class="lead">Create a personalized meal plan in three simple steps.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-user-cog me-2"></i>Step 1: Your Information</h4>
+                        <form id="nutrition-form">
+                            <!-- Age -->
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="number" class="form-control" id="age" value="30" required>
+                            </div>
+                            <!-- Weight & Height -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="weight" class="form-label">Weight (kg)</label>
+                                    <input type="number" class="form-control" id="weight" value="70" required>
+                                </div>
+                                <div class="col">
+                                    <label for="height" class="form-label">Height (cm)</label>
+                                    <input type="number" class="form-control" id="height" value="175" required>
+                                </div>
+                            </div>
+                            <!-- Gender -->
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <!-- Activity Level -->
+                            <div class="mb-3">
+                                <label for="activity" class="form-label">Activity Level</label>
+                                <select class="form-select" id="activity">
+                                    <option value="sedentary">Sedentary</option>
+                                    <option value="light">Light</option>
+                                    <option value="moderate" selected>Moderate</option>
+                                    <option value="active">Active</option>
+                                    <option value="very_active">Very Active</option>
+                                </select>
+                            </div>
+                            <!-- Goal -->
+                            <div class="mb-3">
+                                <label for="goal" class="form-label">Goal</label>
+                                <select class="form-select" id="goal">
+                                    <option value="cut">Weight Loss</option>
+                                    <option value="maintain" selected>Maintain</option>
+                                    <option value="bulk">Weight Gain</option>
+                                </select>
+                            </div>
+                            <!-- Meals Per Day -->
+                            <div class="mb-3">
+                                <label for="num-meals" class="form-label">Meals Per Day</label>
+                                <select class="form-select" id="num-meals">
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Calculate Nutrition & Choose Foods</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Selection -->
+            <div class="col-lg-8">
+                <!-- Nutrition Summary (initially hidden) -->
+                <div id="nutrition-summary-section" class="card shadow-sm mb-4" style="display:none;">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-chart-pie me-2"></i>Your Nutrition Targets</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-primary mb-3">Daily Targets</h5>
+                                <div class="row text-center">
+                                    <div class="col-6 mb-3">
+                                        <div class="card border-0 bg-light">
+                                            <div class="card-body p-3">
+                                                <h3 class="text-primary mb-1" id="daily-calories">0</h3>
+                                                <small class="text-muted">Calories</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <div class="card border-0 bg-light">
+                                            <div class="card-body p-3">
+                                                <h3 class="text-success mb-1" id="daily-protein">0g</h3>
+                                                <small class="text-muted">Protein</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-6 mb-3">
+                                        <div class="card border-0 bg-light">
+                                            <div class="card-body p-3">
+                                                <h3 class="text-warning mb-1" id="daily-carbs">0g</h3>
+                                                <small class="text-muted">Carbs</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <div class="card border-0 bg-light">
+                                            <div class="card-body p-3">
+                                                <h3 class="text-info mb-1" id="daily-fat">0g</h3>
+                                                <small class="text-muted">Fat</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="text-success mb-3">Per Meal Targets</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Nutrient</th>
+                                                <th class="text-end">Target</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Calories</td>
+                                                <td class="text-end" id="meal-calories">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Protein</td>
+                                                <td class="text-end" id="meal-protein">0g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carbohydrates</td>
+                                                <td class="text-end" id="meal-carbs">0g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fat</td>
+                                                <td class="text-end" id="meal-fat">0g</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong id="meals-count">3</strong> meals per day
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="food-selection-section" class="card shadow-sm" style="display:none;">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-utensils me-2"></i>Step 2: Choose Your Favorite Foods</h4>
+                        
+                        <!-- Search and Filter -->
+                        <div class="row mb-3">
+                            <div class="col-md-8">
+                                <input type="text" id="food-search" class="form-control" placeholder="Search for foods...">
+                            </div>
+                            <div class="col-md-4">
+                                <select id="category-filter" class="form-select">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Selection Summary -->
+                        <div class="alert alert-info mb-3" id="selection-summary" style="display:none;">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <span id="selected-count">0</span> foods selected
+                        </div>
+                        
+                        <!-- Food List -->
+                        <div id="food-list" style="height: 400px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 0.375rem; padding: 10px;">
+                            <!-- Foods will be loaded here -->
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button id="generate-plan-btn" class="btn btn-success w-100">
+                                <i class="fas fa-magic me-2"></i>Step 3: Generate My Meal Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Clear form and hide sections on page load/refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear the form
+            document.getElementById('nutrition-form').reset();
+            
+            // Hide nutrition summary and food selection sections
+            document.getElementById('nutrition-summary-section').style.display = 'none';
+            document.getElementById('food-selection-section').style.display = 'none';
+            
+            // Clear any stored data
+            sessionStorage.removeItem('mealPlan');
+        });
+
+        // Store nutrition data globally to be accessible by the meal plan generator
+        window.nutritionData = {};
+
+        // Handle nutrition form submission
+        document.getElementById('nutrition-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                age: document.getElementById('age').value,
+                weight: document.getElementById('weight').value,
+                height: document.getElementById('height').value,
+                gender: document.getElementById('gender').value,
+                activity: document.getElementById('activity').value,
+                goal: document.getElementById('goal').value,
+                meals: document.getElementById('num-meals').value
+            };
+
+            try {
+                // First, get the nutrition calculation
+                const nutritionResponse = await fetch('/api/calculate-nutrition', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const nutritionResult = await nutritionResponse.json();
+                
+                if (nutritionResponse.ok) {
+                    window.nutritionData = nutritionResult; // Store for later
+                    
+                    // Display nutrition summary
+                    displayNutritionSummary(nutritionResult);
+                    
+                    // Then, get all foods
+                    const foodsResponse = await fetch('/api/get-all-foods');
+                    const foodsResult = await foodsResponse.json();
+
+                    if (foodsResponse.ok) {
+                        const foodList = document.getElementById('food-list');
+                        foodList.innerHTML = ''; // Clear previous list
+                        
+                        // Get unique categories for filter
+                        const categories = [...new Set(foodsResult.foods.map(food => food.category))].sort();
+                        const categoryFilter = document.getElementById('category-filter');
+                        categoryFilter.innerHTML = '<option value="">All Categories</option>';
+                        categories.forEach(category => {
+                            categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
+                        });
+                        
+                        // Create food items with better styling
+                        foodsResult.foods.forEach(food => {
+                            const div = document.createElement('div');
+                            div.className = 'food-item mb-2 p-2 border rounded';
+                            div.style.cursor = 'pointer';
+                            div.style.transition = 'all 0.2s ease';
+                            div.style.backgroundColor = '#f8f9fa';
+                            
+                            div.innerHTML = `
+                                <div class="d-flex align-items-center">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="checkbox" value="${food.food}" id="food-${food.food.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h6 class="mb-1">${food.food}</h6>
+                                                <span class="badge bg-primary me-1">${food.category}</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <small class="text-muted">
+                                                    <strong>${food.calories}</strong> cal<br>
+                                                    P: ${food.protein}g | C: ${food.carbs}g | F: ${food.fat}g
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            // Add hover effect
+                            div.addEventListener('mouseenter', function() {
+                                this.style.backgroundColor = '#e9ecef';
+                                this.style.transform = 'translateY(-1px)';
+                            });
+                            
+                            div.addEventListener('mouseleave', function() {
+                                this.style.backgroundColor = '#f8f9fa';
+                                this.style.transform = 'translateY(0)';
+                            });
+                            
+                            // Make entire item clickable
+                            div.addEventListener('click', function(e) {
+                                if (e.target.type !== 'checkbox') {
+                                    const checkbox = this.querySelector('input[type="checkbox"]');
+                                    checkbox.checked = !checkbox.checked;
+                                    updateSelectionCount();
+                                }
+                            });
+                            
+                            foodList.appendChild(div);
+                        });
+
+                        document.getElementById('food-selection-section').style.display = 'block';
+                        updateSelectionCount();
+                    } else {
+                        alert('Error fetching food list: ' + foodsResult.error);
+                    }
+                } else {
+                    alert('Error calculating nutrition: ' + nutritionResult.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        // Handle food search
+        document.getElementById('food-search').addEventListener('input', function() {
+            filterFoods();
+        });
+
+        // Handle category filter
+        document.getElementById('category-filter').addEventListener('change', function() {
+            filterFoods();
+        });
+
+        // Function to filter foods
+        function filterFoods() {
+            const searchFilter = document.getElementById('food-search').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            const foodItems = document.querySelectorAll('#food-list .food-item');
+            
+            foodItems.forEach(item => {
+                const foodName = item.querySelector('h6').textContent.toLowerCase();
+                const foodCategory = item.querySelector('.badge').textContent;
+                const matchesSearch = foodName.includes(searchFilter);
+                const matchesCategory = !categoryFilter || foodCategory === categoryFilter;
+                
+                item.style.display = matchesSearch && matchesCategory ? '' : 'none';
+            });
+        }
+
+        // Function to update selection count
+        function updateSelectionCount() {
+            const selectedCount = document.querySelectorAll('#food-list input:checked').length;
+            const summary = document.getElementById('selection-summary');
+            const countSpan = document.getElementById('selected-count');
+            
+            countSpan.textContent = selectedCount;
+            
+            if (selectedCount > 0) {
+                summary.style.display = 'block';
+            } else {
+                summary.style.display = 'none';
+            }
+        }
+
+        // Function to display nutrition summary
+        function displayNutritionSummary(nutritionData) {
+            // Daily targets
+            document.getElementById('daily-calories').textContent = nutritionData.daily.calories;
+            document.getElementById('daily-protein').textContent = nutritionData.daily.protein + 'g';
+            document.getElementById('daily-carbs').textContent = nutritionData.daily.carbs + 'g';
+            document.getElementById('daily-fat').textContent = nutritionData.daily.fat + 'g';
+            
+            // Per meal targets
+            document.getElementById('meal-calories').textContent = nutritionData.per_meal.calories;
+            document.getElementById('meal-protein').textContent = nutritionData.per_meal.protein + 'g';
+            document.getElementById('meal-carbs').textContent = nutritionData.per_meal.carbs + 'g';
+            document.getElementById('meal-fat').textContent = nutritionData.per_meal.fat + 'g';
+            
+            // Meals count
+            document.getElementById('meals-count').textContent = nutritionData.per_meal.meals;
+            
+            // Show the nutrition summary section
+            document.getElementById('nutrition-summary-section').style.display = 'block';
+        }
+
+        // Handle meal plan generation
+        document.getElementById('generate-plan-btn').addEventListener('click', async function() {
+            const selectedFoods = Array.from(document.querySelectorAll('#food-list input:checked')).map(el => el.value);
+            
+            if (selectedFoods.length === 0) {
+                alert('Please select at least one favorite food.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/generate-custom-meal-plan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nutrition_reqs: window.nutritionData, // Use stored data
+                        favorite_foods: selectedFoods
+                    })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    // Store the meal plan in session storage and redirect
+                    sessionStorage.setItem('mealPlan', JSON.stringify(data.meal_plan));
+                    window.location.href = '/meal-plan-result';
+                } else {
+                    alert('Error generating meal plan: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while generating the meal plan.');
+            }
+        });
+    </script>
+</body>
+</html>
